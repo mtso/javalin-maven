@@ -41,6 +41,12 @@ public class App
     {
         Javalin app = Javalin.start(3000);
         app.get("/", serveIndex);
+        app.get("/greet/:name", (ctx) -> {
+            ctx.result("Hello, " + ctx.param("name") + "!");
+        });
+        app.get("/*", (ctx) -> {
+            ctx.result("404");
+        });
         System.out.println( "Listening on 3000" );
     }
 }
